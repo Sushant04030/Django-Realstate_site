@@ -1,0 +1,30 @@
+{% load static %}
+<div class="container-fluid bg-dark text-white-50 footer pt-4 mt-4 wow fadeIn" data-wow-delay="0.1s">
+    <div class="container py-5">
+        <div class="row g-5">
+            <div class="col-lg-5 col-md-4">
+                <h5 class="text-white mb-4">Get In Touch</h5>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Finance Chowk, Butwal, Lumbini, Nepal</p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+977 9857089240</p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i>easyspacerealtors.esr@gmail.com</p>
+                <div class="d-flex pt-2">
+                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/profile.php?id=100090965358156" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/easyspace.realtors/?fbclid=IwAR0npAxFWt6aqm-jmvwWgLbiqr77WSi9JV9nA_db28tBYeT5RRuzZQUZiKw" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a class="btn btn-outline-light btn-social" href="https://www.tiktok.com/@easyspace.realtors?fbclid=IwAR2C_JN2wgF28FuwPyd2fBO_jtqV6EDueV6a0BOcOVgzbD7XM-ZOqUbKryw" target="_blank"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4">
+                <h5 class="text-white mb-4">Quick Links</h5>
+                <a class="btn btn-link text-white-50" href="{% url 'aboutUs_view' %}">About Us</a>
+                <a class="btn btn-link text-white-50" href="{% url 'contactUs_view' %}">Contact Us</a>
+                <a class="btn btn-link text-white-50" href="{% url 'agents_view' %}">Our Agents</a>
+                <a class="btn btn-link text-white-50" href="{% url 'testimonial_view' %}">Testimonials</a>
+                <!-- <a class="btn btn-link text-white-50" href="{% url 'aboutUs_view' %}">Terms & Condition</a> -->
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <h5 class="text-white mb-4">Newsletter</h5>
+                <p>Follow us on our social media accounts in order to receive daily update on the new listing.</p>
+            </div>
+        </div>
+    </div>
+</div>

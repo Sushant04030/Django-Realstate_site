@@ -1,0 +1,531 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0 mt-1">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+        <div class="col-12 animated fadeIn">
+            <div class="owl-carousel header-carousel">
+                <div class="owl-carousel-item">
+                    <img class="img-fluid" src="{{property.image.url}}" alt="{{property.title}} {{property.description}}"
+                        style="height:100%; object-fit: cover; object-position: center;">
+                </div>
+                {% for photo in photos %}
+                <div class="owl-carousel-item">
+                    <img class="img-fluid" src="{{photo.image.url}}" alt="{{property.title}} {{property.description}}"
+                        style="height:100%; object-fit: cover; object-position: center;" s>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- title start -->
+<div class="container-xxl py-2 pt-4">
+    <div class="container">
+        <div class="text-center mx-auto mb-1 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-1">{{property.title}}</h1>
+            <div class="p-2 pb-0">
+                <h5 class="text-primary mb-3">NRs. {{property.price_in_text}}</h5>
+                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{property.address}},
+                    {{property.city}}</p>
+            </div>
+            <div class="d-flex border-top">
+                <small class="flex-fill text-center border-end py-2"><i
+                        class="fa fa-ruler-combined text-primary me-2"></i>{{property.area}}</small>
+                <small class="flex-fill text-center border-end py-2"><i
+                        class="fa fa-bed text-primary me-2"></i>{{property.room}} Bed</small>
+                <small class="flex-fill text-center py-2"><i
+                        class="fa fa-bath text-primary me-2"></i>{{property.bathroom}} Bath</small>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- title end -->
+
+<!-- detail start -->
+<div class="container-xxl py-2 pt-4">
+    <div class="container">
+        <div class="text-center mx-auto mb-1 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 800px;">
+            <h1 class="mb-3">Details</h1>
+            <p>{{property.description}}</p>
+        </div>
+    </div>
+</div>
+<!-- detail end -->
+
+<!-- amenities Start -->
+<div class="container-xxl py-2 pt-4">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Amenities</h1>
+            <p>Features of the property</p>
+        </div>
+        <div class="row g-4">
+            {% if property.parking %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-sharp fa-solid fa-p"></i>
+                    </div>
+                    <h6>Parking</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.camera %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h6>Camera</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.water %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h6>Water</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.balcony %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fas fa-bars fa-rotate-90"></i>
+                    </div>
+                    <h6>Balcony</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.power %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-sharp fa-solid fa-bolt"></i>
+                    </div>
+                    <h6>Power</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.garden %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+                    <h6>Garden</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.furnished %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <h6>Furnished</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.gym %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-dumbbell"></i>
+                    </div>
+                    <h6>Gym</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.swimming_pool %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-water-ladder"></i>
+                    </div>
+                    <h6>Swimming Pool</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.garbage_disposal %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-trash"></i>
+                    </div>
+                    <h6>Garbage Disposal</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.modular_kitchen %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-kitchen-set"></i>
+                    </div>
+                    <h6>Modular Kitchen</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.hot_water %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-sharp fa-solid fa-mug-hot"></i>
+                    </div>
+                    <h6>Hot Water</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.lift %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-elevator"></i>
+                    </div>
+                    <h6>Lift</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.ac %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <img src="{% static '/img/air-conditioner.png' %}" style="height:1rem; width:1rem;">
+                    </div>
+                    <h6>AC</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.wifi %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fa-solid fa-wifi"></i>
+                    </div>
+                    <h6>WiFi</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.washing_machine %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <h6>Washing Machine</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.security %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1 text-center">
+                    <div class="icon mb-3">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h6>Security</h6>
+                </div>
+            </div>
+            {% endif %}
+
+            {% if property.solar %}
+            <div class="col-6 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="rounded p-1  text-center">
+                    <div class="icon mb-3 " style="flex-direction: column;">
+                        <i class="fas fa-solar-panel "></i>
+                    </div>
+                    <h6 class="">Solar</h6>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<!-- amenities End -->
+
+<!-- search start -->
+<div class="container-xxl py-2 pt-4">
+    <div class="container">
+        <div class="text-center mx-auto mb-1 wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="mb-3">Search more property</h1>
+            {% include '../includes/searchblock.html' %}
+        </div>
+    </div>
+</div>
+<!-- search end -->
+
+<!-- similar property start -->
+{% if similar_properties %}
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h2 class="mb-3">Similar Properties</h2>
+        </div>
+        <div class="row g-4">
+            <div class="owl-carousel similar-carousel wow fadeInUp" data-wow-delay="0.1s">
+
+                {% for property in similar_properties %}
+                <div class="col">
+                    <div class="property-item rounded overflow-hidden">
+                        <div class="position-relative overflow-hidden property-block">
+                            <a href="{% url 'property_detail_view' id=property.id %}"><img class="img-fluid"
+                                    src="{{property.image.url}}" alt=""></a>
+                            <!-- <a href=""><img class="img-fluid" src="{% static 'img/property-1.jpg' %}" alt=""></a> -->
+                            <div class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                {% if property.sale %}for sell
+                                {% elif property.rent %}for Rent
+                                {% endif %}
+
+                            </div>
+                            <div
+                                class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                {{property.type}}</div>
+                        </div>
+                        <div class="p-4 pb-0">
+                            <h5 class="text-primary mb-3">NRs. {{property.price_in_text}}</h5>
+                            <a class="d-block h5 mb-2"
+                                href="{% url 'property_detail_view' id=property.id %}">{{property.title}}</a>
+                            <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{property.address}},
+                                {{property.city}}</p>
+                        </div>
+                        <div class="d-flex border-top">
+                            <small class="flex-fill text-center border-end py-2"><i
+                                    class="fa fa-ruler-combined text-primary me-2"></i>{{property.area}}</small>
+                            <small class="flex-fill text-center border-end py-2"><i
+                                    class="fa fa-bed text-primary me-2"></i>{{property.room}} Bed</small>
+                            <small class="flex-fill text-center py-2"><i
+                                    class="fa fa-bath text-primary me-2"></i>{{property.bathroom}} Bath</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<!-- similar property end -->
+
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Contact Us</h1>
+            <p>If you need more detail about the shown property please contact our agents or fill the contact form with
+                informations about the .</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="row gy-4">
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-light rounded p-2">
+                            <div class="d-flex align-items-center bg-white rounded p-2"
+                                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <div class="icon me-3" style="width: 45px; height: 45px;">
+                                    <i class="fa fa-map-marker-alt text-primary"></i>
+                                </div>
+                                <span>Finance Chowk, Butwal, Lumbini, Nepal</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+                        <div class="bg-light rounded p-2">
+                            <div class="d-flex align-items-center bg-white rounded p-2"
+                                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <div class="icon me-3" style="width: 45px; height: 45px;">
+                                    <i class="fa fa-envelope-open text-primary"></i>
+                                </div>
+                                <span>easyspacerealtors.esr@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+                        <div class="bg-light rounded p-2">
+                            <div class="d-flex align-items-center bg-white rounded p-2"
+                                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <div class="icon me-3" style="width: 45px; height: 45px;">
+                                    <i class="fa fa-phone-alt text-primary"></i>
+                                </div>
+                                <span>+977 9857089240</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-light rounded p-2">
+                            <div class="d-flex align-items-center bg-white rounded p-2"
+                                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <a href="https://www.facebook.com/profile.php?id=100090965358156" target="_blank">
+                                    <div class="icon me-3" style="width: 45px; height: 45px;">
+                                        <i class="fab fa-facebook text-primary"></i>
+                                    </div>
+                                    <span>Easy Space Realtors</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-light rounded p-2">
+                            <div class="d-flex align-items-center bg-white rounded p-2"
+                                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <a href="https://www.instagram.com/easyspace.realtors/?fbclid=IwAR0npAxFWt6aqm-jmvwWgLbiqr77WSi9JV9nA_db28tBYeT5RRuzZQUZiKw"
+                                    target="_blank">
+                                    <div class="icon me-3" style="width: 45px; height: 45px;">
+                                        <i class="fab fa-instagram text-primary"></i>
+                                    </div>
+                                    <span>easyspace.realtors</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+                        <div class="bg-light rounded p-2">
+                            <div class="d-flex align-items-center bg-white rounded p-2"
+                                style="border: 1px dashed rgba(0, 185, 142, .3)">
+                                <a href="https://www.tiktok.com/@easyspace.realtors?fbclid=IwAR2C_JN2wgF28FuwPyd2fBO_jtqV6EDueV6a0BOcOVgzbD7XM-ZOqUbKryw"
+                                    target="_blank">
+                                    <div class="icon me-3" style="width: 45px; height: 45px;">
+                                        <i class="fab fa-tiktok text-primary"></i>
+                                    </div>
+                                    <span>easyspace.realtors</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% if property.map_link %}
+            <div class="col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <iframe src="{{property.map_link}}" height="450" style="border:0; width: 100%;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+            </div>
+            <div class="col-md-6">
+                {% else %}
+                <div class="col-12">
+                {% endif %}
+                <div class="wow fadeInUp" data-wow-delay="0.5s">
+                    <h2 class="mb-4">Contact Form</h2>
+                    <p class="mb-4">Fill the form if you have anything to ask.</p>
+                    <form action="{% url 'contact_view' %}" method="POST">
+                        {% csrf_token %}
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="name" placeholder="Your Name"
+                                        name="fullname">
+                                    <label for="name">Your Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="email" class="form-control" id="email" placeholder="Your Email"
+                                        name="email">
+                                    <label for="email">Your Email</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="subject" placeholder="Subject"
+                                        name="subject">
+                                    <label for="subject">Subject</label>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px" name="message">I am intrested in this property | Title : {{property.title}} | Address : {{property.address}}</textarea>
+                                    <!-- <label for="message">Message</label> -->
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Property Agents</h1>
+            <p>Our top class agents are listed below. We work together with excellent tew co-ordination to bring the
+                perfect properties at the best price.</p>
+        </div>
+        <div class="row g-4">
+            {% for agent in c_agents %}
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item rounded overflow-hidden">
+                    <div class="position-relative">
+                        <img class="img-fluid" src="{{agent.image.url}}" alt="">
+                        <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
+
+                            {% if agent.facebook %}
+                            <a class="btn btn-square mx-1" href="{{agent.facebook}}" target="_blank"><i
+                                    class="fab fa-facebook-f"></i></a>
+                            {% endif %}
+                            {% if agent.twitter %}
+                            <a class="btn btn-square mx-1" href="{{agent.twitter}}" target="_blank"><i
+                                    class="fab fa-twitter"></i></a>
+                            {% endif %}
+                            {% if agent.instagram %}
+                            <a class="btn btn-square mx-1" href="{{agent.instagram}}" target="_blank"><i
+                                    class="fab fa-instagram"></i></a>
+                            {% endif %}
+                            {% if agent.tiktok %}
+                            <a class="btn btn-square mx-1" href="{{agent.tiktok}}" target="_blank"><i
+                                    class="fab fa-tiktok"></i></a>
+                            {% endif %}
+                            {% if agent.skype %}
+                            <a class="btn btn-square mx-1" href="{{agent.skype}}" target="_blank"><i
+                                    class="fab fa-skype"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="text-center p-1 text-center mt-3">
+                        <h5 class="fw-bold mb-0">{{agent.fullname}}</h5>
+                        <p class="p-0 m-0">{{agent.city}}</p>
+                        <p class="p-0 m-0">{{agent.phone}}</p>
+                        <p class="p-0 m-0">{{agent.email}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="col-12 text-center">
+                <a class="btn btn-primary py-3 px-5" href="{% url 'property_view' %}">Browse More Agent</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
+
+{% endblock content %}

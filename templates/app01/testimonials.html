@@ -1,0 +1,87 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Header Start -->
+<div class="container-fluid header bg-white p-0 m-1">
+    <div class="row g-0 align-items-center flex-column-reverse flex-md-row">
+        <div class="col-md-6 p-5 mt-lg-5">
+            <h1 class="display-5 animated fadeIn mb-4">Customer Testimonials</h1> 
+                <nav aria-label="breadcrumb animated fadeIn">
+                <ol class="breadcrumb text-uppercase">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item text-body active" aria-current="page">Testimonials</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="col-md-6 animated fadeIn">
+            <img class="img-fluid" src="{% static '/img/ERSs.png' %}" alt="">
+        </div>
+    </div>
+</div>
+<!-- Header End -->
+
+<!-- search start -->
+<div class="container-xxl py-2 pt-4">
+    <div class="container">
+        <div class="text-center mx-auto mb-1 wow fadeInUp" data-wow-delay="0.1s">
+            <h1 class="mb-3">Search more property</h1>
+            {% include '../includes/searchblock.html' %}
+        </div>
+    </div>
+</div>
+<!-- search end -->
+
+<!-- testimonials start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h2 class="mb-3">Our Clients Say!</h2>
+            <p>Testimonials of the clients we have provided our services and worked for.</p>
+        </div>
+        <div class="row g-4">
+            {% for testimonial in testimonials %}
+            <div class="testimonial-item bg-light rounded p-3 col-12 col-md-6">
+                <div class="bg-white border rounded p-4">
+                    <div class="d-flex align-items-center">
+                        <img class="img-fluid flex-shrink-0 rounded" src="{{testimonial.image.url}}" style="width: 45px; height: 45px;">
+                        <div class="ps-3">
+                            <h6 class="fw-bold mb-1">{{testimonial.fullname}}</h6>
+                            <small>{{testimonial.profession}}</small>
+                        </div>
+                    </div>
+                    <p>{{testimonial.comment}}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% if testimonials.has_other_pages %}
+<nav class="mt-4" aria-label="Page navigation sample">
+    <ul class="pagination">
+        {% if testimonials.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{testimonials.previous_page_number}}">Previous</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        {% endif %}
+        {% for i in testimonials.paginator.page_range %}
+        {% if testimonials.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if testimonials.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{testimonials.next_page_number}}">Next</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+<!-- testimonials end -->
+
+
+{% endblock content %}

@@ -1,0 +1,175 @@
+{% extends './base.html' %}
+{% load static %}
+{% block content %}
+
+{% include '../includes/searchblock.html' %}
+
+<!-- Property List Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-0 gx-5 align-items-end">
+            <div class="col-lg-6">
+                <div class="text-start mx-auto mb-5 wow slideInLeft" data-wow-delay="0.1s">
+                    {% if "/search/" in request.get_full_path %}
+
+                        <h1 class="mb-3">Search Results :</h1>
+                        {% if properties_count > 1 %}
+                            <p>{{properties_count}} Properties found</p>
+                        {% else %}
+                            <p>{{properties_count}} Property found</p>
+                        {% endif %}
+
+                        <p>Type : {{type_name}}  |  
+                        City : {{city_name}}  |  
+
+                    {% else %}
+
+                        <h1 class="mb-3">Property Listing</h1>
+                        <p>List of properties on our websites. you can choose whichever you are interested in.</p>
+                        <p>
+                        {% if type %}
+                                Type : {{type.title}} |   
+                        {% else %}
+                            Type : all   |  
+                        {% endif %}
+
+                        {% if city %}
+                            City : {{city.title}}  |  
+                        {% else %}
+                            City : all  |  
+                        {% endif %}
+
+                    {% endif %}
+                        
+                        {% if status %}
+                            {% if status == '0' %}
+                            Status : for sell  |  
+                            {% else %}
+                            Status : for rent   |  
+                            {% endif %}
+                        {% else %} 
+                            Status : all  |  
+                        {% endif %}
+                            </p>
+                </div>
+            </div>
+            <div class="col-lg-6 text-start text-lg-end wow slideInRight" data-wow-delay="0.1s">
+                <ul class="nav nav-pills d-inline-flex justify-content-end mb-5">
+
+                    {% comment %} <li class="nav-item me-2">
+                        <a href="{% url 'search_status_view' id=0 %}"
+                            class="btn btn-outline-primary ">Featured</a>
+                    </li> {% endcomment %}
+                    {% comment %} <li class="nav-item me-2">
+                        <a href="{% url 'search_status_view' id=1 %}" class="btn btn-outline-primary">For Sell</a>
+                    </li>
+                    <li class="nav-item me-2">
+                        <a href="{% url 'search_status_view' id=2 %}" class="btn btn-outline-primary">For Rent</a>
+                        <!-- data-bs-toggle="pill"  -->
+                    </li> {% endcomment %}
+                    <li class="nav-item me-2 ">
+                    {% if "/search/" in request.get_full_path %}
+    
+                        {% if keyword %}
+
+                            {% if price  %} 
+                                <a href="{% url 'search_price_view' price=price keyword=keyword types=type city=city status=status %}" class="btn btn-outline-primary ">Price <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i> </a>
+                            {% else %}
+                                <a href="{% url 'search_price_view' price=0 keyword=keyword types=type city=city status=status %}" class="btn btn-outline-primary ">Price <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i></a>
+                            {% endif %}
+
+                        {% else %}
+
+                            {% if price  %}
+                                <a href="{% url 'search_price_view' price=price keyword='N' types=type city=city status=status %}" class="btn btn-outline-primary ">Price <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i></a>
+                            {% else %}
+                                <a href="{% url 'search_price_view' price=0 keyword='N' types=type city=city status=status %}" class="btn btn-outline-primary ">Price <i class="fas fa-arrow-up"></i> <i class="fas fa-arrow-down"></i></a>
+                            {% endif %}
+
+                        {% endif %}
+
+                    {% endif %}
+                    </li>
+                </ul>
+
+
+            </div>
+        </div>
+        <div class="tab-content11">
+            <div id="tab-311" class="tab-pane fade show p-0">
+                <div class="row g-4">
+                    {% if properties %}
+                    {% for property in properties %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="property-item rounded overflow-hidden">
+                            <div class="position-relative overflow-hidden property-block">
+                                <a href="{% url 'property_detail_view' id=property.id %}"><img class="img-fluid" src="{{property.image.url}}" alt="{{property.title}} {{property.description}}"></a>
+                                <!-- <a href=""><img class="img-fluid" src="{% static 'img/property-1.jpg' %}" alt=""></a> -->
+                                <div
+                                    class="bg-primary rounded text-white position-absolute start-0 top-0 m-4 py-1 px-3">
+                                    {% if property.sale == True %}for sell
+                                    {% elif property.rent %}for Rent
+                                    {% endif %}
+
+                                </div>
+                                <div
+                                    class="bg-white rounded-top text-primary position-absolute start-0 bottom-0 mx-4 pt-1 px-3">
+                                    {{property.type}}</div>
+                            </div>
+                            <div class="p-4 pb-0">
+                                <h5 class="text-primary mb-3">NRs. {{property.price_in_text}}</h5>
+                                <a class="d-block h5 mb-2" href="{% url 'property_detail_view' id=property.id %}">{{property.title}}</a>
+                                <p><i class="fa fa-map-marker-alt text-primary me-2"></i>{{property.address}},
+                                    {{property.city}}</p>
+                            </div>
+                            <div class="d-flex border-top">
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-ruler-combined text-primary me-2"></i>{{property.area}}</small>
+                                <small class="flex-fill text-center border-end py-2"><i
+                                        class="fa fa-bed text-primary me-2"></i>{{property.room}} Bed</small>
+                                <small class="flex-fill text-center py-2"><i
+                                        class="fa fa-bath text-primary me-2"></i>{{property.bathroom}} Bath</small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <h2>No properties found! Try another keyword.</h2>
+
+                    {% endif %}
+
+
+                    <!-- <div class="col-12 text-center">
+                        <a class="btn btn-primary py-3 px-5" href="">Browse More Property</a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% if properties.has_other_pages %}
+<nav class="mt-4" aria-label="Page navigation sample">
+    <ul class="pagination">
+        {% if properties.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page={{properties.previous_page_number}}">Previous</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+        {% endif %}
+        {% for i in properties.paginator.page_range %}
+        {% if properties.number == i %}
+        <li class="page-item active"><a class="page-link" href="#">{{i}}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
+        {% endif %}
+        {% endfor %}
+        {% if properties.has_next %}
+        <li class="page-item"><a class="page-link" href="?page={{properties.next_page_number}}">Next</a></li>
+        {% else %}
+        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+<!-- Property List End -->
+
+{% endblock content %}
